@@ -1,4 +1,4 @@
-# Prevalid MCP SDK (Starter)
+# Prevalid MCP SDK + Web Preview
 
 Prevalid is trust middleware for AI outputs.
 
@@ -21,6 +21,27 @@ const result = await safeClient.run({ prompt: '...' });
 - Returns either:
   - verified output (`blocked: false`), or
   - blocked payload with risk details (`blocked: true`).
+
+## Local preview
+
+```bash
+npm start
+```
+
+Open: `http://localhost:4173`
+
+## Vercel deploy (mobile-friendly quick setup)
+
+Because Vercel serves the project root, `index.html` is now at the root and automatically loads the dark UI from `/web/*`.
+
+1. Push this repo to GitHub.
+2. In Vercel: **New Project → Import repo**.
+3. Framework preset: **Other** (or keep auto-detected).
+4. Build command: **leave empty**.
+5. Output directory: **leave empty**.
+6. Deploy.
+
+After deploy, opening your Vercel domain should directly show the Prevalid preview.
 
 ## API
 
