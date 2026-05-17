@@ -1,0 +1,10 @@
+{
+  "name": "prevalid-mcp",
+  "version": "0.1.0",
+  "description": "One-line MCP trust middleware for any AI client",
+  "main": "src/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "test": "node --test"
+  }
+}
