@@ -1,0 +1,56 @@
+:root {
+  --bg: #090b12;
+  --bg-soft: #121625;
+  --card: #171b2d;
+  --line: #2b3150;
+  --text: #e7ebff;
+  --muted: #9aa4cc;
+  --accent: #6d7dff;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: radial-gradient(circle at 0% 0%, #1a2246 0%, var(--bg) 40%);
+  color: var(--text);
+}
+.nav {
+  position: sticky; top: 0; z-index: 5;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 6vw; border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(8px); background: rgba(9, 11, 18, 0.8);
+}
+.nav nav { display: flex; gap: 20px; }
+.nav a { color: var(--muted); text-decoration: none; }
+.brand { font-weight: 700; letter-spacing: 0.4px; }
+main { padding: 0 6vw 50px; }
+.hero { display: grid; grid-template-columns: 1.3fr 1fr; gap: 28px; padding: 54px 0 20px; }
+.eyebrow { color: #b7c0f5; text-transform: uppercase; letter-spacing: 1.4px; font-size: 12px; }
+h1 { font-size: clamp(34px, 6vw, 64px); margin: 6px 0; line-height: 1.05; }
+.lead { color: var(--muted); max-width: 62ch; }
+.hero-card, .panel, article {
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+.hero-card { padding: 22px; }
+.metric { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #252c48; color: var(--muted); }
+.metric strong { color: var(--text); }
+.panel { margin-top: 22px; padding: 24px; }
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+article { padding: 18px; }
+ol { color: var(--muted); line-height: 1.9; padding-left: 18px; }
+.btn {
+  border: 0; background: var(--accent); color: white; border-radius: 10px;
+  padding: 11px 16px; cursor: pointer; font-weight: 600;
+}
+.btn.ghost { background: transparent; border: 1px solid var(--line); color: var(--text); }
+.hero-actions { display: flex; gap: 10px; margin-top: 16px; }
+.upload { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+#fileList { color: var(--muted); line-height: 1.8; }
+footer { text-align: center; color: var(--muted); border-top: 1px solid var(--line); padding: 18px; }
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; }
+  .grid { grid-template-columns: 1fr; }
+  .nav nav { display: none; }
+}
