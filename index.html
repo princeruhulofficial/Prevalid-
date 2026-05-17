@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prevalid — One-line MCP Trust Layer</title>
+  <link rel="stylesheet" href="/web/styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="brand">Prevalid</div>
+    <nav>
+      <a href="#how">How it works</a>
+      <a href="#features">Features</a>
+      <a href="#sdk">SDK</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn ghost" href="#sdk">Get Started</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">MCP TRUST MIDDLEWARE</p>
+      <h1>One line code.<br/>Verified AI output.</h1>
+      <p class="lead">Plug Prevalid between users and any AI model. Intercept, verify, score, and audit every response before it reaches production.</p>
+
+      <div class="install-tabs" aria-label="installation commands">
+        <button class="chip active" data-cmd="npm i prevalid-mcp">npm</button>
+        <button class="chip" data-cmd="pnpm add prevalid-mcp">pnpm</button>
+        <button class="chip" data-cmd="yarn add prevalid-mcp">yarn</button>
+        <button class="chip" data-cmd="bun add prevalid-mcp">bun</button>
+      </div>
+      <div class="code-row">
+        <code id="installCmd">npm i prevalid-mcp</code>
+        <button class="btn" id="copyInstall">Copy</button>
+      </div>
+
+      <div class="code-block" id="sdk">
+<pre><code>import { withPrevalid } from 'prevalid-mcp'
+
+const safeClient = withPrevalid(client, {
+  endpoint: 'https://api.prevalid.ai/v1/run',
+  apiKey: process.env.PREVALID_API_KEY,
+  minTrustScore: 60
+})
+
+const result = await safeClient.run({ prompt: 'Generate legal summary' })</code></pre>
+      </div>
+    </section>
+
+    <section id="how" class="panel">
+      <h2>How Prevalid works</h2>
+      <div class="steps">
+        <div><span>1</span><p>Intercept prompt/output metadata</p></div>
+        <div><span>2</span><p>Mask sensitive information before model call</p></div>
+        <div><span>3</span><p>Verify claims with evidence and assign trust score</p></div>
+        <div><span>4</span><p>Return verified answer + immutable audit record</p></div>
+      </div>
+    </section>
+
+    <section id="features" class="panel">
+      <h2>Enterprise trust features</h2>
+      <div class="grid">
+        <article><h3>Hallucination Guard</h3><p>Sentence-level claim checks and risk flags.</p></article>
+        <article><h3>Data Masking</h3><p>Detect and mask keys, emails, IDs, confidential strings.</p></article>
+        <article><h3>Source Attribution</h3><p>Attach evidence links and confidence annotations.</p></article>
+        <article><h3>Audit Logs</h3><p>Store prompt/output/timestamps/scores for compliance review.</p></article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Live API preview</h2>
+      <p>Test frontend ↔ backend flow directly from this page.</p>
+      <div class="upload">
+        <input id="promptInput" type="text" placeholder="Type a prompt to verify..." />
+        <button class="btn" id="verifyBtn">Verify Now</button>
+      </div>
+      <pre id="verifyResult" class="result-box">No verification yet.</pre>
+    </section>
+
+    <section id="faq" class="panel">
+      <h2>FAQ</h2>
+      <details><summary>Does Prevalid replace OpenAI/Claude?</summary><p>No. It is a verification and governance layer on top of any model.</p></details>
+      <details><summary>Can I integrate in one line?</summary><p>Yes, wrap your existing client with <code>withPrevalid(client, config)</code>.</p></details>
+      <details><summary>Can I use my own policies?</summary><p>Yes, policy rules and threshold-based blocking can be configured.</p></details>
+    </section>
+  </main>
+
+  <footer>© 2026 Prevalid — AI works. Prevalid proves it.</footer>
+  <script src="/web/script.js"></script>
+</body>
+</html>
