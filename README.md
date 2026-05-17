@@ -43,6 +43,18 @@ Because Vercel serves the project root, `index.html` is now at the root and auto
 
 After deploy, opening your Vercel domain should directly show the Prevalid preview.
 
+## Vercel 404 (NOT_FOUND) troubleshooting
+
+If you see `404: NOT_FOUND` with no deploy-time error, it usually means routing/project-root mismatch, not app crash.
+
+1. In Vercel project settings, confirm **Root Directory** is repository root (`/`).
+2. Confirm branch is deployed (Production or Preview) and open the latest deployment URL (not old one).
+3. Keep Framework Preset as **Other**.
+4. Build Command: empty. Output Directory: empty.
+5. Redeploy after this commit (`vercel.json` + root `index.html`).
+
+This repo now includes explicit rewrites to force `/` -> `/index.html` on Vercel.
+
 ## API
 
 ### `withPrevalid(client, config)`
