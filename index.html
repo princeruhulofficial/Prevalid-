@@ -3,98 +3,90 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Prevalid — AI Trust Infrastructure</title>
+  <title>Prevalid — One-line MCP Trust Layer</title>
   <link rel="stylesheet" href="/web/styles.css" />
 </head>
 <body>
   <header class="nav">
     <div class="brand">Prevalid</div>
     <nav>
+      <a href="#how">How it works</a>
       <a href="#features">Features</a>
-      <a href="#workflow">Workflow</a>
-      <a href="#docs">Documents</a>
+      <a href="#sdk">SDK</a>
+      <a href="#faq">FAQ</a>
     </nav>
-    <button class="btn ghost">Book Demo</button>
+    <a class="btn ghost" href="#sdk">Get Started</a>
   </header>
 
   <main>
     <section class="hero">
-      <div class="hero-text">
-        <p class="eyebrow">AI Trust Infrastructure</p>
-        <h1>AI works.<br/>Prevalid proves it.</h1>
-        <p class="lead">A professional trust and governance layer between users and AI systems. Verify claims, protect sensitive data, and maintain legal-grade audit trails.</p>
-        <div class="hero-actions">
-          <button class="btn">Start Verification</button>
-          <button class="btn ghost">View Architecture</button>
-        </div>
+      <p class="eyebrow">MCP TRUST MIDDLEWARE</p>
+      <h1>One line code.<br/>Verified AI output.</h1>
+      <p class="lead">Plug Prevalid between users and any AI model. Intercept, verify, score, and audit every response before it reaches production.</p>
+
+      <div class="install-tabs" aria-label="installation commands">
+        <button class="chip active" data-cmd="npm i prevalid-mcp">npm</button>
+        <button class="chip" data-cmd="pnpm add prevalid-mcp">pnpm</button>
+        <button class="chip" data-cmd="yarn add prevalid-mcp">yarn</button>
+        <button class="chip" data-cmd="bun add prevalid-mcp">bun</button>
       </div>
-      <div class="hero-card">
-        <h3>Live Trust Summary</h3>
-        <div class="metric"><span>Trust Score</span><strong>92</strong></div>
-        <div class="metric"><span>Unsupported Claims</span><strong>1</strong></div>
-        <div class="metric"><span>Masked Secrets</span><strong>3</strong></div>
-        <div class="metric"><span>Audit ID</span><strong>aud_24031</strong></div>
+      <div class="code-row">
+        <code id="installCmd">npm i prevalid-mcp</code>
+        <button class="btn" id="copyInstall">Copy</button>
+      </div>
+
+      <div class="code-block" id="sdk">
+<pre><code>import { withPrevalid } from 'prevalid-mcp'
+
+const safeClient = withPrevalid(client, {
+  endpoint: 'https://api.prevalid.ai/v1/run',
+  apiKey: process.env.PREVALID_API_KEY,
+  minTrustScore: 60
+})
+
+const result = await safeClient.run({ prompt: 'Generate legal summary' })</code></pre>
+      </div>
+    </section>
+
+    <section id="how" class="panel">
+      <h2>How Prevalid works</h2>
+      <div class="steps">
+        <div><span>1</span><p>Intercept prompt/output metadata</p></div>
+        <div><span>2</span><p>Mask sensitive information before model call</p></div>
+        <div><span>3</span><p>Verify claims with evidence and assign trust score</p></div>
+        <div><span>4</span><p>Return verified answer + immutable audit record</p></div>
       </div>
     </section>
 
     <section id="features" class="panel">
-      <h2>Core Features</h2>
+      <h2>Enterprise trust features</h2>
       <div class="grid">
-        <article>
-          <h3>Hallucination Guardrail</h3>
-          <p>Sentence-level claim analysis, risky output detection, and trust scoring.</p>
-        </article>
-        <article>
-          <h3>Data Masking</h3>
-          <p>Automatic masking of passwords, API keys, email, IDs, and enterprise-sensitive data.</p>
-        </article>
-        <article>
-          <h3>Source Attribution</h3>
-          <p>Attach citations and confidence references for explainable and auditable AI answers.</p>
-        </article>
-        <article>
-          <h3>Accountability Logs</h3>
-          <p>Immutable interaction records with timestamps, risk events, and validation results.</p>
-        </article>
+        <article><h3>Hallucination Guard</h3><p>Sentence-level claim checks and risk flags.</p></article>
+        <article><h3>Data Masking</h3><p>Detect and mask keys, emails, IDs, confidential strings.</p></article>
+        <article><h3>Source Attribution</h3><p>Attach evidence links and confidence annotations.</p></article>
+        <article><h3>Audit Logs</h3><p>Store prompt/output/timestamps/scores for compliance review.</p></article>
       </div>
     </section>
 
-    <section id="workflow" class="panel">
-      <h2>How It Works</h2>
-      <ol>
-        <li>User prompt is intercepted in the Prevalid layer.</li>
-        <li>Sensitive data is detected and masked before model submission.</li>
-        <li>Model output is verified, scored, and annotated with evidence.</li>
-        <li>Only verified response and audit record are delivered.</li>
-      </ol>
-    </section>
-
-
     <section class="panel">
-      <h2>Frontend ↔ Backend Verification</h2>
-      <p>Type a prompt and run live verification via backend API.</p>
+      <h2>Live API preview</h2>
+      <p>Test frontend ↔ backend flow directly from this page.</p>
       <div class="upload">
-        <input id="promptInput" type="text" placeholder="Write a sample AI prompt..." style="min-width:260px;flex:1;" />
+        <input id="promptInput" type="text" placeholder="Type a prompt to verify..." />
         <button class="btn" id="verifyBtn">Verify Now</button>
       </div>
       <pre id="verifyResult" class="result-box">No verification yet.</pre>
     </section>
 
-    <section id="docs" class="panel">
-      <h2>Connect Your Documents (Preview)</h2>
-      <p>Upload policy, legal, or internal knowledge documents. In the next step this panel can be connected to your ingestion pipeline.</p>
-      <div class="upload">
-        <input id="docInput" type="file" multiple accept=".pdf,.doc,.docx,.txt,.md" />
-        <button class="btn" id="previewBtn">Preview Files</button>
-      </div>
-      <ul id="fileList"></ul>
+    <section id="faq" class="panel">
+      <h2>FAQ</h2>
+      <details><summary>Does Prevalid replace OpenAI/Claude?</summary><p>No. It is a verification and governance layer on top of any model.</p></details>
+      <details><summary>Can I integrate in one line?</summary><p>Yes, wrap your existing client with <code>withPrevalid(client, config)</code>.</p></details>
+      <details><summary>Can I use my own policies?</summary><p>Yes, policy rules and threshold-based blocking can be configured.</p></details>
     </section>
   </main>
 
-  <footer>
-    <p>© 2026 Prevalid. Governance layer for enterprise AI trust.</p>
-  </footer>
-
+  <footer>© 2026 Prevalid — AI works. Prevalid proves it.</footer>
   <script src="/web/script.js"></script>
 </body>
 </html>
